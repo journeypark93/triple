@@ -21,7 +21,7 @@ public class Point {
     private Long points;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn
     private User user;
 
     public Point(long points, User user) {

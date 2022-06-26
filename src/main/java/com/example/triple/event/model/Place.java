@@ -16,11 +16,16 @@ import java.util.List;
 public class Place {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long id;                         //index로 사용
+    private Long id;
 
-    @Column(nullable = false, unique = true) //고유한 값
+    @Column(unique = true) //고유한 값
     private String placeName;
 
     @OneToMany(mappedBy = "place")
     private List<Review> reviews;
+
+    public Place(long id, String placeName) {
+        this.id = id;
+        this.placeName = placeName;
+    }
 }

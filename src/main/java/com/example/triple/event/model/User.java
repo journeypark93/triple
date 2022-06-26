@@ -13,13 +13,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="Users") //h2 연결 종료 후에는 지우기
+@Table(name="Users")
 public class User {
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;                         //index로 사용
 
-    @Column(nullable = false, unique = true) //고유한 값
+    @Column(unique = true) //고유한 값
     private String username;
 
     @OneToMany(mappedBy = "user")
@@ -28,4 +28,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Point> points;
 
+
+    public User(long id, String username) {
+        this.id = id;
+        this.username = username;
+    }
 }

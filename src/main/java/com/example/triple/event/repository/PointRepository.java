@@ -9,5 +9,7 @@ import java.util.List;
 
 public interface PointRepository extends JpaRepository<Point, Long> {
 
+    List<Point> findAllByUserId(Long id);
+
     List<Point> findAllByUser(User user);
 }

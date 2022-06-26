@@ -1,6 +1,7 @@
 package com.example.triple.mockobject.Repository;
 
 import com.example.triple.event.model.Photo;
+import com.example.triple.event.model.Review;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,5 +20,13 @@ public class MockPhotoRepository {
         ++id;
         photos.add(photo);
         return photo;
+    }
+
+    public void deleteAllByReview(Review review) {
+        photos.removeIf(photo -> photo.getReview() == review);
+    }
+
+    public void saveAll(List<Photo> photoList) {
+        photos.addAll(photoList);
     }
 }

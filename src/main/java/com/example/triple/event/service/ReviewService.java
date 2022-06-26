@@ -97,7 +97,7 @@ public class ReviewService {
     //리뷰 수정
     private String updateReview(ReviewRequestDto reviewRequestDto) {
         //등록된 리뷰 조회
-        Review review = reviewRepository.findByReviewId(reviewRequestDto.getReviewId());
+        Review review = reviewRepository.findByReviewName(reviewRequestDto.getReviewId());
         //리뷰 validation
         if (review == null) {
             throw new IllegalArgumentException("리뷰가 등록되어있지 않습니다.");
@@ -110,11 +110,12 @@ public class ReviewService {
         }
         //포인트 산정
         long points = review.getPoints();
+        long earnPoits = 0L;
         if (review.getPhotos().isEmpty() && reviewRequestDto.getAttachedPhotoIds().size() > 0) {
-            ++points;
+            ++earnPoits;
         }
         if (review.getContent().length()>0 && review.getPhotos().size()>0 && reviewRequestDto.getAttachedPhotoIds().size()==0) {
-            --points;
+            --earnPoits;
         }
         //리뷰 업데이트 저장
         List<Photo> photos = new ArrayList<>();
@@ -122,21 +123,24 @@ public class ReviewService {
             Photo photo = new Photo(photoId, review);
             photos.add(photo);
         }
-        review.update(reviewRequestDto, points, photos);
+        photoRepository.deleteAllByReview(review);
+        photoRepository.saveAll(photos);
+
+        review.update(reviewRequestDto, points+earnPoits);
         //포인트 로그 등록
-        pointRepository.save(new Point(points, review.getUser()));
+        pointRepository.save(new Point(earnPoits, review.getUser()));
 
         return "리뷰수정 완료";
     }
 
     //리뷰 삭제
     private String removeReview(ReviewRequestDto reviewRequestDto) {
-        Review review = reviewRepository.findByReviewId(reviewRequestDto.getReviewId());
+        Review review = reviewRepository.findByReviewName(reviewRequestDto.getReviewId());
         long points = -1 * review.getPoints();
         if(points!=0){
             pointRepository.save(new Point(points, review.getUser()));
         }
-        reviewRepository.deleteByReviewId(review.getReviewId());
+        reviewRepository.deleteByReviewName(review.getReviewName());
         return "리뷰삭제 완료";
     }
 }

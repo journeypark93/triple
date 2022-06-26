@@ -11,8 +11,8 @@ import javax.transaction.Transactional;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
     Review findByUserAndPlace(User user, Place place);
 
-    Review findByReviewId(String reviewId);
+    Review findByReviewName(String reviewId);
 
     @Transactional
-    void deleteByReviewId(String reviewId);
+    void deleteByReviewName(String reviewId);
 }

@@ -137,7 +137,10 @@ public class MockReviewService {
             Photo photo = new Photo(photoId, review);
             photos.add(photo);
         }
-        review.update(reviewRequestDto, points, photos);
+        mockPhotoRepository.deleteAllByReview(review);
+        mockPhotoRepository.saveAll(photos);
+
+        review.update(reviewRequestDto, points);
         //포인트 로그 등록
         mockPointRepository.save(new Point(points, review.getUser()));
 
@@ -151,7 +154,7 @@ public class MockReviewService {
         if(points!=0){
             mockPointRepository.save(new Point(points, review.getUser()));
         }
-        mockReviewRepository.deleteByReviewId(review.getReviewId());
+        mockReviewRepository.deleteByReviewId(review.getReviewName());
         return "리뷰삭제 완료";
     }
 }

@@ -17,10 +17,14 @@ public class PointService {
     private final UserRepository userRepository;
     private final PointRepository pointRepository;
 
-    public PointResponseDto getPoint(ReviewRequestDto reviewRequestDto) {
+    public PointResponseDto getPoint(String userId) {
         Long pointSum = 0L;
-        User user = userRepository.findByUsername(reviewRequestDto.getUserId());
+        User user = userRepository.findByUsername(userId);
+        if(user==null){
+            throw new IllegalArgumentException("해당하는 user 가 없습니다.");
+        }
         List<Point> points = pointRepository.findAllByUser(user);
+        System.out.println(points.get(0).getPoints());
         for(Point point:points){
             pointSum += point.getPoints();
         }

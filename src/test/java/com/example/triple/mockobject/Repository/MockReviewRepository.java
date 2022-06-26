@@ -62,7 +62,7 @@ public class MockReviewRepository {
 
     public Review findByReviewId(String reviewId) {
         for(Review review:reviews){
-            if(review.getReviewId().equals(reviewId)){
+            if(review.getReviewName().equals(reviewId)){
                 return review;
             }
         }
@@ -70,7 +70,7 @@ public class MockReviewRepository {
     }
 
     public void deleteByReviewId(String reviewId) {
-        reviews.removeIf(review -> review.getReviewId().equals(reviewId));
+        reviews.removeIf(review -> review.getReviewName().equals(reviewId));
     }
 
     public void savePhotos(Review userReview, List<Photo> attachedPhotoIds) {

@@ -14,14 +14,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "USERS")
 public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;                         //index로 사용
 
-    @Column(nullable = false, unique = true) //고유한 값
-    private String reviewId;
+    @Column(unique = true) //고유한 값
+    private String reviewName;
 
     @Column
     private String content;
@@ -29,28 +28,27 @@ public class Review {
     @Column
     private Long points;
 
-    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "review", cascade = CascadeType.REMOVE)
     private List<Photo> photos;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn
     private User user;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn
     private Place place;
 
     public Review(ReviewRequestDto reviewRequestDto, User user, Place place, long points) {
-        this.reviewId = reviewRequestDto.getReviewId();
+        this.reviewName = reviewRequestDto.getReviewId();
         this.content = reviewRequestDto.getContent();
         this.points = points;
         this.user = user;
         this.place = place;
     }
 
-    public void update(ReviewRequestDto reviewRequestDto, long points, List<Photo> photos) {
+    public void update(ReviewRequestDto reviewRequestDto, long points) {
         this.content = reviewRequestDto.getContent();
         this.points = points;
-        this.photos = photos;
     }
 }
