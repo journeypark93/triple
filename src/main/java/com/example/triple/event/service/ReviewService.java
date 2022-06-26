@@ -53,7 +53,7 @@ public class ReviewService {
         if(reviewRequestDto.getContent().length()==0 && reviewRequestDto.getAttachedPhotoIds().size()==0){
             throw new IllegalArgumentException("글과 이미지가 모두 비어있습니다.");
         }
-        //회원가입 시, 등록된 user가 있다고 가정
+        //회원가입하여 등록된 user가 있다고 가정
         User user = userRepository.findByUsername(reviewRequestDto.getUserId());
         if (user == null) {
             throw new IllegalArgumentException("저장된 User가 없습니다.");
