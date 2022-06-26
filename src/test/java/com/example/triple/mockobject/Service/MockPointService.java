@@ -38,6 +38,9 @@ public class MockPointService {
 
         Long pointSum = 0L;
         User user = mockUserRepository.findByUsername(reviewRequestDto.getUserId());
+        if(user==null){
+            throw new IllegalArgumentException("해당하는 user 가 없습니다.");
+        }
         List<Point> points = mockPointRepository.findAllByUser(user);
         for(Point point:points){
             pointSum += point.getPoints();

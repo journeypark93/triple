@@ -21,5 +21,4 @@ public class PointController {
         return ResponseEntity.ok()
                 .body(points);
     }
-
 }

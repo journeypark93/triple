@@ -1,7 +1,6 @@
 package com.example.triple.event.service;
 
 import com.example.triple.event.dto.PointResponseDto;
-import com.example.triple.event.dto.ReviewRequestDto;
 import com.example.triple.event.model.Point;
 import com.example.triple.event.model.User;
 import com.example.triple.event.repository.*;
@@ -24,7 +23,6 @@ public class PointService {
             throw new IllegalArgumentException("해당하는 user 가 없습니다.");
         }
         List<Point> points = pointRepository.findAllByUser(user);
-        System.out.println(points.get(0).getPoints());
         for(Point point:points){
             pointSum += point.getPoints();
         }
