@@ -26,4 +26,5 @@
  - DB : H2 console 사용함
    - ID, URL : application.properties 참고 
    - ![image](https://user-images.githubusercontent.com/101076530/175830238-827ae0d3-0b8b-4001-9a9c-ac0e55578c92.png)
+   - application 구동 시 testData 로 예제로 주어진 UserId, PlaceId 이용하여 User, Place 객체 각각 1개씩 생성함
  - PostMan으로 API Response 확인 및 TEST code로 Error 확인함
