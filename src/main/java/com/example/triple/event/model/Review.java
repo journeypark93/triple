@@ -29,7 +29,7 @@ public class Review {
     @Column
     private Long points;
 
-    @OneToMany(mappedBy = "review")
+    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<Photo> photos;
 
     @ManyToOne
