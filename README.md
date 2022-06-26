@@ -19,3 +19,11 @@
 
 <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/>
 </div>
+
+
+# :blossom: Application 실행방법
+ - JAVA 8, springBoot, Gradle 사용함
+ - DB : H2 console 사용함
+   - ID, URL : application.properties 참고 
+   - ![image](https://user-images.githubusercontent.com/101076530/175830238-827ae0d3-0b8b-4001-9a9c-ac0e55578c92.png)
+ - PostMan으로 API Response 확인 및 TEST code로 Error 확인함
