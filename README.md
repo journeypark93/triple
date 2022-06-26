@@ -7,7 +7,7 @@
 
 
 # :gem: API
-![image](https://user-images.githubusercontent.com/101076530/175830067-e05166cf-24cc-40c4-a92a-4eaec1e3bbd5.png)
+![image](https://user-images.githubusercontent.com/101076530/175830613-aecf2fad-d8b0-42ca-a067-b293df905177.png)
 
 
 # :computer: 기술 스택 
